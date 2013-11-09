@@ -17,12 +17,21 @@ namespace TestMathematica
             XmlDocument sheet = new XmlDocument();
             sheet.Load("MusicSheetTemplate.xml");
 
-            while (notes[i]._end < 4)
+            while (notes[i]._start < 4)
             {
                 XmlDocument note = new XmlDocument();
                 note.Load("NoteNodeTemplate.xml");
-                note.SelectSingleNode("/note/pitch/step").InnerText = notes[i]._step;
+                var let = notes[i]._step[0].ToString();
+                var sharp = notes[i]._step.Length > 1;
+                note.SelectSingleNode("/note/pitch/step").InnerText = let;
                 note.SelectSingleNode("/note/pitch/octave").InnerText = notes[i]._octave.ToString();
+
+                if (sharp)
+                {
+                    var nc = note.CreateNode(XmlNodeType.Element, "alter", "");
+                    note.SelectSingleNode("/note/pitch").AppendChild(nc);
+                    note.SelectSingleNode("/note/pitch/alter").InnerText = "1";
+                }
 
                 int duration = notes[i]._end - notes[i]._start;
                 note.SelectSingleNode("/note/duration").InnerText = duration.ToString();
@@ -48,11 +57,20 @@ namespace TestMathematica
                     measure.SelectSingleNode("/measure").Attributes[0].Value = (currentMeasure).ToString();
                     sheet.SelectSingleNode("/score-partwise/part").AppendChild(sheet.ImportNode(measure.DocumentElement, true));
                 }
-                 
+
                 XmlDocument note = new XmlDocument();
                 note.Load("NoteNodeTemplate.xml");
-                note.SelectSingleNode("/note/pitch/step").InnerText = notes[i]._step;
+                var let = notes[i]._step[0].ToString();
+                var sharp = notes[i]._step.Length > 1;
+                note.SelectSingleNode("/note/pitch/step").InnerText = let;
                 note.SelectSingleNode("/note/pitch/octave").InnerText = notes[i]._octave.ToString();
+
+                if (sharp)
+                {
+                    var nc = note.CreateNode(XmlNodeType.Element, "alter", "");
+                    note.SelectSingleNode("/note/pitch").AppendChild(nc);
+                    note.SelectSingleNode("/note/pitch/alter").InnerText = "1";
+                }
 
                 int duration = notes[i]._end - notes[i]._start;
                 note.SelectSingleNode("/note/duration").InnerText = duration.ToString();

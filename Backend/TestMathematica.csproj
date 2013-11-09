@@ -55,6 +55,7 @@
     <Content Include="MeasureTemplate.xml" />
     <Content Include="MusicSheetTemplate.xml" />
     <Content Include="NoteNodeTemplate.xml" />
+    <Content Include="RestTemplate.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
