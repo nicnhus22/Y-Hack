@@ -18,7 +18,7 @@ var destinationUrl = 'http://pandacompany.fr/YHack/Layout/upload.php';
 
 var list = [];
 
- var totalSize = 0;
+var totalSize = 0;
 
 // var totalProgress = 0;
 
@@ -68,7 +68,9 @@ var list = [];
 
         processFiles(event.dataTransfer.files);
 
+        startSpinner();
 
+        hideDragHere();
 
     }
 
@@ -123,7 +125,6 @@ var list = [];
 
     function uploadFile(file, status) {
 
-
         // création de l'objet XMLHttpRequest
 
         // création de l'objet FormData
@@ -137,33 +138,36 @@ var list = [];
         xhr.onreadystatechange = stateChanged;
 
         xhr.open('POST', 'http://illogika.net/Layout/upload.php');
-
+        
         xhr.onload = function () {
           if (xhr.status === 200) {
             console.log('all done: ' + xhr.status);
-          } else {
+            stopSpinner();
+            showSucess(file);
+            setTimeout("leftPressed()", 3000);
+            setTimeout("hideSucess()",3000);
+            setTimeout("inputOAuth()",3000);
+            loadDropboxLink();            
+        } else {
             console.log('Something went terribly wrong...');
-          }
-        };
+        }
+    };
 
 
-        xhr.send(formData);
+    xhr.send(formData);
+
+        //_d!S_8zQOEM3M
 
         
     }
 
     function stateChanged() {
 
-  if (xhr.readyState == 4  && xhr.status == 200 ){
-    
+      if (xhr.readyState == 4  && xhr.status == 200 ){
+
       var result = xhr.responseText; // Get the reponse text
-
-      alert(result);
-
-        
       
-      
-    }
+  }
 
 
 }
@@ -181,7 +185,7 @@ var list = [];
 
             var nextFile = list.shift();
 
-            if (nextFile.size >= 262144) { // 256 kb
+            if (nextFile.size >= 262144000) { // 256 kb
 
                 // result.innerHTML += '<div class="f">Fichier trop gros (dépassement de la taille maximale)</div>';
 
@@ -209,3 +213,100 @@ var list = [];
     initHandlers();
 
 })();
+
+
+function stopSpinner(){
+
+    document.getElementById('progress_elem').style.display = "none";
+
+}
+
+
+
+function startSpinner(){
+
+    document.getElementById('progress_elem').style.display = "block";
+
+}
+
+function showSucess(file_name){
+    var success = document.getElementById('success');
+
+    success.innerHTML = "FILE UPLOADED<br/>"+file_name.name;
+    success.style.right="-220px";
+    success.style.background = "rgba(140, 200, 59, 1)";
+}
+
+function hideSucess(){
+    var success = document.getElementById('success');
+
+    success.innerHTML = "";
+    success.style.right="0px";
+    success.style.background = "rgba(140, 200, 59, 0)";
+}
+
+function hideDragHere() {
+    document.getElementById('right_arrow').style.display = "none";
+}
+
+function inputOAuth(){
+
+}
+
+
+function loadDropboxLink(){
+
+    $.ajax({
+      type: 'GET',
+      data: {do:'auth'},
+      url: 'http://illogika.net/Layout/oauth.php',
+      success:function(data){
+        $('#link').html('<a href=\"'+data+'\" target="_blank">Click Here</a>');
+      }
+    });
+      
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+    *
+    * CUBE ROTATION FUNCTIONS
+    *
+    *
+    */
+
+    var xAngle = 0;
+    var yAngle = 0;
+
+    function rightPressed(){
+        xAngle += 90;
+
+        document.getElementById('cube').style.transform = "translateZ(-100px) rotateY("+xAngle+"deg)";
+        document.getElementById('cube').style.MsTransform = "translateZ(-100px) rotateY("+xAngle+"deg)";
+        document.getElementById('cube').style.WebkitTransform = "translateZ(-100px) rotateY("+xAngle+"deg)";
+    }
+
+    function leftPressed(){
+
+        xAngle -= 90;
+
+        document.getElementById('cube').style.transform = "translateZ(-100px) rotateY("+xAngle+"deg)";
+        document.getElementById('cube').style.MsTransform = "translateZ(-100px) rotateY("+xAngle+"deg)";
+        document.getElementById('cube').style.WebkitTransform = "translateZ(-100px) rotateY("+xAngle+"deg)";
+
+    }

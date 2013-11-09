@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="Cube/css/key_frame.css"/>
   <link rel="stylesheet" type="text/css" href="Cube/css/cube.css"/>
   <link rel="stylesheet" type="text/css" href="Drag_Drop/css/style.css"/>
+  <link rel="stylesheet" href="Progress/css.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
   <script>
 
@@ -15,34 +16,54 @@
 </head>
 <body>
     <div id="global_container">
-      <div id="title"><img src="Cube/images/YHACK2.png" alt="Hack" width="520px" height="100px"/></div>
-    	<div id="inner_container">
+      <div id="title"><img src="Cube/images/Baux.png" alt="BAUX" width="375px" height="100px"/></div>
+      <div id="inner_container">
 
-    		<div id="cube_c">
-	    		<section class="cube_container">
-			    	<div id="cube">
+        <div id="cube_c">
+          <section class="cube_container">
+            <div id="cube">
 
-				        <figure id="front" class="explode">
+                <figure id="front" class="explode">
+
+                  <img height="40" width="180" id="right_arrow" src="Drag_Drop/images/arrow_drag.png"/>
+
+                  <div id="success"></div>
+
+                  <div id="progress_elem" style="display:none;">
+                    <div class="pace" id="spinner"><div class="pace-activity"></div></div>
+                    <div class="progress_bar"></div>
+                  </div>
+
                     <div id="dropArea">
                       <img id="back_drop_image" src="Drag_Drop/images/drop_logo.png" alt="drop" width="50%" height="50%"/>
                     </div>
+
                 </figure>
 
-				        <figure id="back" class="explode"></figure>
+                <figure id="back" class="explode"></figure>
 
-				        <figure id="up" class="explode"></figure>
+                <figure id="up" class="explode"></figure>
 
-				        <figure id="down" class="explode"></figure>
+                <figure id="down" class="explode"></figure>
 
-				        <figure id="left" class="explode"></figure>
+                <figure id="left" class="explode"></figure>
 
-				        <figure id="right" class="explode"></figure>
-		    		</div>
-				</section>
-			</div>
-    	</div>
+                <figure id="right" class="explode">
+                  <form method="GET" action="http://illogika.net/Layout/oauth.php">
+                    <div id="explanation"> Please click on the following link to get the authentification code and paste it in the field bellow.<br/><br/> <span id="link"></span> </div>
+                    <input id="input_oauth" name="do" type="text" placeholder="ENTER THE AUTHENTIFICATION CODE..." required /><br/><br/><br/>
+                    <input type="submit" value="Submit" />
+                  </form>
+                    
+
+                </figure>
+            </div>
+        </section>
+      </div>
+      </div>
     </div>
 <script src="Cube/javas/javas.js"></script>
 <script src="Drag_Drop/js/script.js"></script>
+<script src="Progress/js.js"></script>
 </body>
 </html>
