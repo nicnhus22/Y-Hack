@@ -3,22 +3,48 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMathematica", "TestMathematica.csproj", "{FF87F429-B139-43E7-8D48-F6042BE811B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BauxBackendService", "..\BauxBackendService\BauxBackendService.csproj", "{7E416450-7E77-4894-9C9A-74D558DDB994}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{F7CFABC1-D300-4584-9B50-B011A7746B83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FA6328BD-C705-40C2-BF1B-06CF2EC93CFC}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		Mathematica.vsmdi = Mathematica.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
 EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Mathematica.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Debug|x86.ActiveCfg = Debug|x86
 		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Debug|x86.Build.0 = Debug|x86
+		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Release|Any CPU.ActiveCfg = Release|x86
+		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Release|Mixed Platforms.Build.0 = Release|x86
 		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Release|x86.ActiveCfg = Release|x86
 		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Release|x86.Build.0 = Release|x86
-		{7E416450-7E77-4894-9C9A-74D558DDB994}.Debug|x86.ActiveCfg = Debug|x86
-		{7E416450-7E77-4894-9C9A-74D558DDB994}.Debug|x86.Build.0 = Debug|x86
-		{7E416450-7E77-4894-9C9A-74D558DDB994}.Release|x86.ActiveCfg = Release|x86
-		{7E416450-7E77-4894-9C9A-74D558DDB994}.Release|x86.Build.0 = Release|x86
+		{F7CFABC1-D300-4584-9B50-B011A7746B83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7CFABC1-D300-4584-9B50-B011A7746B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7CFABC1-D300-4584-9B50-B011A7746B83}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F7CFABC1-D300-4584-9B50-B011A7746B83}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F7CFABC1-D300-4584-9B50-B011A7746B83}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F7CFABC1-D300-4584-9B50-B011A7746B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7CFABC1-D300-4584-9B50-B011A7746B83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7CFABC1-D300-4584-9B50-B011A7746B83}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F7CFABC1-D300-4584-9B50-B011A7746B83}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F7CFABC1-D300-4584-9B50-B011A7746B83}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
