@@ -41,15 +41,9 @@
     
 }
 
-#cube:hover figure {
-    transition:all 2s;
-    -webkit-transition:all 2s;
-    -ms-transition:all 2s;
-    animation: explode 2s infinite;
-}
-
 #front {
-    background-color: #c4302b;
+    background-color: rgba(61, 154, 232, 0.5);
+
     transform:rotateY(0deg) translateZ(200px);
     transition:all 2s;
 
@@ -61,7 +55,7 @@
 }
 
 #back {
-    background-color: #4099FF;
+    background-color: #000;
     transform:rotateY(180deg) translateZ(200px);
     transition:all 2s;
 
@@ -73,7 +67,7 @@
 }
 
 #right {
-    background-color:#FF6600;
+    background-color:#000;
     transform:rotateY(90deg) translateZ(200px);
     transition:all 2s;
 
@@ -85,7 +79,7 @@
 }
 
 #left {
-    background-color:#365AA9;
+    background-color:#000;
     transform:rotateY(-90deg) translateZ(200px);
     transition:all 2s;
 
@@ -97,7 +91,6 @@
 }
 
 #up {
-    background-image:url(../images/cube.png);
     transform:rotateX(90deg) translateZ(200px);
     transition:all 2s;
 
@@ -109,7 +102,6 @@
 }
 
 #down {
-    background-image:url(../images/cube.png);
     transform:rotateX(-90deg) translateZ(200px);
     transition:all 2s;
 
