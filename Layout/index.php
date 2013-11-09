@@ -16,6 +16,7 @@
 </head>
 <body>
     <div id="global_container">
+
       <div id="title"><img src="Cube/images/Baux.png" alt="BAUX" width="375px" height="100px"/></div>
       <div id="inner_container">
 
@@ -40,7 +41,9 @@
 
                 </figure>
 
-                <figure id="back" class="explode"></figure>
+                <figure id="back" class="explode">
+                  <iframe src="http://illogika.net/Layout/MusicSheet/musicsheet.php" height="400" width="400"></iframe>
+                </figure>
 
                 <figure id="up" class="explode"></figure>
 
@@ -49,12 +52,17 @@
                 <figure id="left" class="explode"></figure>
 
                 <figure id="right" class="explode">
-                  <form method="GET" action="http://illogika.net/Layout/oauth.php">
+
+                    <div id="dropbox_success"></div>
+
+                    <div id="progress_elem_drop" style="display:none;">
+                      <div class="pace" id="spinner_success"><div class="pace-activity"></div></div>
+                      <div class="progress_bar"></div>
+                    </div>
+
                     <div id="explanation"> Please click on the following link to get the authentification code and paste it in the field bellow.<br/><br/> <span id="link"></span> </div>
                     <input id="input_oauth" name="do" type="text" placeholder="ENTER THE AUTHENTIFICATION CODE..." required /><br/><br/><br/>
-                    <input type="submit" value="Submit" />
-                  </form>
-                    
+                    <input id="sub" type="button" value="Submit" onclick="submitForm()"/>
 
                 </figure>
             </div>
@@ -65,5 +73,7 @@
 <script src="Cube/javas/javas.js"></script>
 <script src="Drag_Drop/js/script.js"></script>
 <script src="Progress/js.js"></script>
+<script src="MusicSheet/jquery-ui-1.8.20.custom.min.js"></script> 
+<script src="MusicSheet/scorediv-pv0.0.3.js"></script>
 </body>
 </html>

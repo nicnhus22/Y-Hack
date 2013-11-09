@@ -36,7 +36,9 @@ var totalSize = 0;
 
         dropArea.addEventListener('dragover', handleDragOver, false);
 
-        dropArea.addEventListener('dragleave', function(){dropImg.style.opacity = '0.7';}, false);
+        dropArea.addEventListener('dragleave', function(){  dropImg.style.opacity = '0.7';
+                                                            dropImg.style.height = '50%';
+                                                            dropImg.style.width = '50%'; }, false);
 
     }
 
@@ -50,9 +52,9 @@ var totalSize = 0;
 
         event.preventDefault();
 
-
-
         dropImg.style.opacity = '1';
+        dropImg.style.height = '70%';
+        dropImg.style.width = '70%';
 
     }
 
@@ -156,7 +158,6 @@ var totalSize = 0;
 
     xhr.send(formData);
 
-        //_d!S_8zQOEM3M
 
         
     }
@@ -215,6 +216,12 @@ var totalSize = 0;
 })();
 
 
+function startSpinner(){
+
+    document.getElementById('progress_elem').style.display = "block";
+
+}
+
 function stopSpinner(){
 
     document.getElementById('progress_elem').style.display = "none";
@@ -223,16 +230,24 @@ function stopSpinner(){
 
 
 
-function startSpinner(){
+function startSpinnerDrop(){
 
-    document.getElementById('progress_elem').style.display = "block";
+    document.getElementById('progress_elem_drop').style.display = "block";
+
+}
+
+
+
+function stopSpinnerDrop(){
+
+    document.getElementById('progress_elem_drop').style.display = "none";
 
 }
 
 function showSucess(file_name){
     var success = document.getElementById('success');
 
-    success.innerHTML = "FILE UPLOADED<br/>"+file_name.name;
+    success.innerHTML = "FILE UPLOADED TO SERVER<br/>"+file_name.name;
     success.style.right="-220px";
     success.style.background = "rgba(140, 200, 59, 1)";
 }
@@ -244,6 +259,23 @@ function hideSucess(){
     success.style.right="0px";
     success.style.background = "rgba(140, 200, 59, 0)";
 }
+
+function showSucessDropbox(file_name){
+    var success = document.getElementById('dropbox_success');
+
+    success.innerHTML = "FILE UPLOADED<br/>"+file_name;
+    success.style.right="-220px";
+    success.style.background = "rgba(140, 200, 59, 1)";
+}
+
+function hideSucessDropbox(){
+    var success = document.getElementById('dropbox_success');
+
+    success.innerHTML = "";
+    success.style.right="0px";
+    success.style.background = "rgba(140, 200, 59, 0)";
+}
+
 
 function hideDragHere() {
     document.getElementById('right_arrow').style.display = "none";
@@ -264,9 +296,33 @@ function loadDropboxLink(){
         $('#link').html('<a href=\"'+data+'\" target="_blank">Click Here</a>');
       }
     });
-      
-    
 }
+
+
+function submitForm(){
+
+    startSpinnerDrop()
+    var action = $('#input_oauth').val();
+    var button = document.getElementById("sub").disabled = true; 
+    button.value = "Submit...";
+    button.disabled = true;
+
+    $.ajax({
+      type: 'GET',
+      data: {do: action },
+      url: 'http://illogika.net/Layout/oauth.php',
+      success:function(data){
+        stopSpinnerDrop();
+        showSucessDropbox('TO DROP BOX');
+        setTimeout("leftPressed()", 3000);
+        setTimeout("hideSucessDropbox()",3000);
+      }
+    });
+
+}
+
+
+
 
 
 

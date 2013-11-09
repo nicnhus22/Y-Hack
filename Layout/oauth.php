@@ -40,9 +40,12 @@
 			list($accessToken, $dropboxUserId) = $_SESSION['webAuth']->finish($code);
 			$dbxClient = new dbx\Client($accessToken, "PHP-Example/1.0");
 
-			$f = fopen("song.mp3", "rb");
-			$result = $dbxClient->uploadFile("/song.wav", dbx\WriteMode::add(), $f);
+			$f = fopen("song.wav", "rb");
+			$result = $dbxClient->uploadFile("/Baux/song.wav", dbx\WriteMode::add(), $f);
+			echo $dropboxUserId;
 			fclose($f);
+
+			
 		}
 
 

@@ -13010,7 +13010,7 @@ function Vk(a, b, c, d) {
         disabled: i
     }, this.Ui), Wk(this, "page_prev_btn_node", {
         id: "page_prev_btn",
-        text: "Goto Prev Page"
+        text: "< Previous Page"
     }, {
         text: l,
         icons: {
@@ -13019,7 +13019,7 @@ function Vk(a, b, c, d) {
         disabled: i
     }, this.Xi), Wk(this, "page_next_btn_node", {
         id: "page_next_btn",
-        text: "Goto Next Page"
+        text: "Next Page > "
     }, {
         text: l,
         icons: {
@@ -13028,7 +13028,7 @@ function Vk(a, b, c, d) {
         disabled: i
     }, this.Vi), Wk(this, "page_nth_btn_node", {
         id: "page_nth_btn",
-        text: "Goto Last Page"
+        text: ""
     }, {
         text: l,
         icons: {
@@ -13138,51 +13138,8 @@ function el(a) {
         disabled: !b
     })
 }
-s.Ti = function () {
-    al(this, "open_file_btn_node", {
-        disabled: i
-    });
-    bl(this, "open_file_dialog_node", {
-        id: "open_file_dialog"
-    }, {
-        modal: i,
-        autoOpen: l,
-        position: ["center", "center"],
-        title: "Open local MusicXML",
-        resizable: l,
-        width: 500,
-        height: "auto",
-        buttons: {
-            OK: function () {
-                var a = $(this);
-                a.prop("ok_clicked", i);
-                a.dialog("close")
-            },
-            Cancel: function () {
-                var a = $(this);
-                a.prop("ok_clicked", l);
-                a.dialog("close")
-            }
-        }
-    }, this.$i, f, this.Zi);
-    al(this, "open_file_btn_node", {
-        disabled: l
-    })
-};
-s.$i = function () {
-    Xk(this, "open_file_input_node", {
-        id: "open_file_input",
-        type: "file",
-        accept: "application/vnd.recordare.musicxml, application/vnd.recordare.musicxml+xml"
-    }, {
-        width: "100%"
-    }, this.open_file_dialog_node)
-};
-s.Zi = function () {
-    var a = this.open_file_dialog_node.prop("ok_clicked"),
-        b = this.open_file_input_node.prop("files");
-    a && b && 1 === b.length && (this.mb = b[0], this.bb = this.mb.name, this.go_url_input_node.prop("value", this.bb), fl(this), Yk(this))
-};
+
+
 s.Qg = function () {
     al(this, "go_url_btn_node", {
         disabled: i
@@ -13280,7 +13237,7 @@ function Yk(a) {
     a.jc.clear();
     if (!a.ac) {
         a.ac = $("<img/>", {
-            src: "/images/waiting.gif",
+            src: "",
             alt: "musicxml loading..."
         });
         var b = 0.5 * (a.kb() - a.ac.prop("width")),

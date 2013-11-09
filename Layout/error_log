@@ -171,3 +171,72 @@ Stack trace:
 #3 /home/illozbyq/public_html/Layout/oauth.php(18): addFile('UCLIxXjC0-cAAAA...')
 #4 {main}
   thrown in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php on line 201
+[09-Nov-2013 05:24:03 America/New_York] PHP Fatal error:  Uncaught exception 'InvalidArgumentException' with message ''inStream' has bad type; expecting resource, got boolean' in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/Checker.php:22
+Stack trace:
+#0 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/Checker.php(27): Dropbox\Checker::throwError('inStream', false, 'resource')
+#1 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/Client.php(247): Dropbox\Checker::argResource('inStream', false)
+#2 /home/illozbyq/public_html/Layout/oauth.php(44): Dropbox\Client->uploadFile('/song.wav', Object(Dropbox\WriteMode), false)
+#3 /home/illozbyq/public_html/Layout/oauth.php(18): addFile('hKB5QvNpy9oAAAA...')
+#4 {main}
+  thrown in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/Checker.php on line 22
+[09-Nov-2013 05:24:56 America/New_York] PHP Fatal error:  Uncaught exception 'Dropbox\Exception_BadRequest' with message 'HTTP status 400
+{"error_description": "given \"code\" is not valid", "error": "invalid_grant"}' in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php:201
+Stack trace:
+#0 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/WebAuthBase.php(112): Dropbox\RequestUtil::unexpectedStatus(Object(Dropbox\HttpResponse))
+#1 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/WebAuthNoRedirect.php(75): Dropbox\WebAuthBase->_finish('hKB5QvNpy9oAAAA...', NULL)
+#2 /home/illozbyq/public_html/Layout/oauth.php(40): Dropbox\WebAuthNoRedirect->finish('hKB5QvNpy9oAAAA...')
+#3 /home/illozbyq/public_html/Layout/oauth.php(18): addFile('hKB5QvNpy9oAAAA...')
+#4 {main}
+  thrown in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php on line 201
+[09-Nov-2013 05:53:23 America/New_York] PHP Fatal error:  Uncaught exception 'Dropbox\Exception_BadRequest' with message 'HTTP status 400
+{"error_description": "given \"code\" is not valid", "error": "invalid_grant"}' in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php:201
+Stack trace:
+#0 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/WebAuthBase.php(112): Dropbox\RequestUtil::unexpectedStatus(Object(Dropbox\HttpResponse))
+#1 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/WebAuthNoRedirect.php(75): Dropbox\WebAuthBase->_finish('3ZGhy78KKkwAAAA...', NULL)
+#2 /home/illozbyq/public_html/Layout/oauth.php(40): Dropbox\WebAuthNoRedirect->finish('3ZGhy78KKkwAAAA...')
+#3 /home/illozbyq/public_html/Layout/oauth.php(18): addFile('3ZGhy78KKkwAAAA...')
+#4 {main}
+  thrown in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php on line 201
+[09-Nov-2013 05:53:23 America/New_York] PHP Fatal error:  Uncaught exception 'Dropbox\Exception_BadRequest' with message 'HTTP status 400
+{"error_description": "given \"code\" is not valid", "error": "invalid_grant"}' in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php:201
+Stack trace:
+#0 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/WebAuthBase.php(112): Dropbox\RequestUtil::unexpectedStatus(Object(Dropbox\HttpResponse))
+#1 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/WebAuthNoRedirect.php(75): Dropbox\WebAuthBase->_finish('3ZGhy78KKkwAAAA...', NULL)
+#2 /home/illozbyq/public_html/Layout/oauth.php(40): Dropbox\WebAuthNoRedirect->finish('3ZGhy78KKkwAAAA...')
+#3 /home/illozbyq/public_html/Layout/oauth.php(18): addFile('3ZGhy78KKkwAAAA...')
+#4 {main}
+  thrown in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php on line 201
+[09-Nov-2013 05:53:24 America/New_York] PHP Fatal error:  Uncaught exception 'Dropbox\Exception_BadRequest' with message 'HTTP status 400
+{"error_description": "given \"code\" is not valid", "error": "invalid_grant"}' in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php:201
+Stack trace:
+#0 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/WebAuthBase.php(112): Dropbox\RequestUtil::unexpectedStatus(Object(Dropbox\HttpResponse))
+#1 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/WebAuthNoRedirect.php(75): Dropbox\WebAuthBase->_finish('3ZGhy78KKkwAAAA...', NULL)
+#2 /home/illozbyq/public_html/Layout/oauth.php(40): Dropbox\WebAuthNoRedirect->finish('3ZGhy78KKkwAAAA...')
+#3 /home/illozbyq/public_html/Layout/oauth.php(18): addFile('3ZGhy78KKkwAAAA...')
+#4 {main}
+  thrown in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php on line 201
+[09-Nov-2013 05:53:24 America/New_York] PHP Fatal error:  Uncaught exception 'Dropbox\Exception_BadRequest' with message 'HTTP status 400
+{"error_description": "given \"code\" is not valid", "error": "invalid_grant"}' in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php:201
+Stack trace:
+#0 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/WebAuthBase.php(112): Dropbox\RequestUtil::unexpectedStatus(Object(Dropbox\HttpResponse))
+#1 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/WebAuthNoRedirect.php(75): Dropbox\WebAuthBase->_finish('3ZGhy78KKkwAAAA...', NULL)
+#2 /home/illozbyq/public_html/Layout/oauth.php(40): Dropbox\WebAuthNoRedirect->finish('3ZGhy78KKkwAAAA...')
+#3 /home/illozbyq/public_html/Layout/oauth.php(18): addFile('3ZGhy78KKkwAAAA...')
+#4 {main}
+  thrown in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php on line 201
+[09-Nov-2013 05:53:24 America/New_York] PHP Fatal error:  Uncaught exception 'Dropbox\Exception_BadRequest' with message 'HTTP status 400
+{"error_description": "given \"code\" is not valid", "error": "invalid_grant"}' in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php:201
+Stack trace:
+#0 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/WebAuthBase.php(112): Dropbox\RequestUtil::unexpectedStatus(Object(Dropbox\HttpResponse))
+#1 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/WebAuthNoRedirect.php(75): Dropbox\WebAuthBase->_finish('3ZGhy78KKkwAAAA...', NULL)
+#2 /home/illozbyq/public_html/Layout/oauth.php(40): Dropbox\WebAuthNoRedirect->finish('3ZGhy78KKkwAAAA...')
+#3 /home/illozbyq/public_html/Layout/oauth.php(18): addFile('3ZGhy78KKkwAAAA...')
+#4 {main}
+  thrown in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/RequestUtil.php on line 201
+[09-Nov-2013 06:58:47 America/New_York] PHP Fatal error:  Uncaught exception 'InvalidArgumentException' with message ''path'': bad path: must start with "/": 'Music-Baux/song.wav'' in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/Path.php:156
+Stack trace:
+#0 /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/Client.php(245): Dropbox\Path::checkArgNonRoot('path', 'Music-Baux/song...')
+#1 /home/illozbyq/public_html/Layout/oauth.php(44): Dropbox\Client->uploadFile('Music-Baux/song...', Object(Dropbox\WriteMode), Resource id #13)
+#2 /home/illozbyq/public_html/Layout/oauth.php(18): addFile('u-6wIUmfmXUAAAA...')
+#3 {main}
+  thrown in /home/illozbyq/public_html/Layout/dropbox-sdk/Dropbox/Path.php on line 156

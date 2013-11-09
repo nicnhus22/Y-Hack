@@ -26,6 +26,7 @@
     -ms-transform-style:preserve-3d;
     -ms-transform:translateZ(-200px);
     -ms-transition:all 2s;
+
 }
 
 #cube figure {
@@ -42,7 +43,7 @@
 }
 
 #front {
-    background-color: rgba(61, 154, 232, 0.5);
+    background-color: rgba(61, 154, 232, 0.8);
 
     transform:rotateY(0deg) translateZ(200px);
     transition:all 2s;
@@ -55,7 +56,7 @@
 }
 
 #back {
-    background-color: rgba(61, 154, 232, 0.5);
+    background-color: rgba(61, 154, 232, 0.8);
 
     transform:rotateY(180deg) translateZ(200px);
     transition:all 2s;
@@ -65,10 +66,16 @@
 
     -ms-transform:rotateY(180deg) translateZ(200px);
     -ms-transition:all 2s;
+
+    position: relative;
+
+    text-align: center;
+
+    overflow: hidden;
 }
 
 #right {
-    background-color: rgba(61, 154, 232, 0.5);
+    background-color: rgba(61, 154, 232, 0.8);
 
     transform:rotateY(90deg) translateZ(200px);
     transition:all 2s;
@@ -85,7 +92,7 @@
 }
 
 #left {
-    background-color: rgba(61, 154, 232, 0.5);
+    background-color: rgba(61, 154, 232, 0.8);
     
     transform:rotateY(-90deg) translateZ(200px);
     transition:all 2s;
@@ -131,7 +138,26 @@
   font-family: 'Helvetica Neue', sans-serif;
   right:0px;
   width: 200px;
-  height: 50px;
+  min-height: 50px;
+  background-color: rgba(140, 200, 59, 0);
+  text-align: center;
+  line-height: 22px;
+  border-radius: 5px;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+}
+
+#dropbox_success {
+  position: absolute;
+  padding:10px;
+  top:0;
+  font-family: 'Helvetica Neue', sans-serif;
+  right:0px;
+  width: 200px;
+  min-height: 50px;
   background-color: rgba(140, 200, 59, 0);
   text-align: center;
   line-height: 22px;
@@ -160,6 +186,60 @@
     width: 300px;
     margin: 40px auto 45px;
     font-family: 'Helvetica Neue', sans-serif;
+}
+
+#play {
+  position: relative;
+  display: none;
+  width:200px;height:200px;
+  text-align: center;
+  margin: 85px auto auto;
+
+}
+
+#play:hover {
+  animation: rotation 1s infinite;
+  cursor: pointer;
+}
+
+@-webkit-keyframes rotation {
+
+  0% { -webkit-transform: rotate(0deg); }
+
+  50% { -webkit-transform: rotate(-10deg); }
+
+  100% { -webkit-transform: rotate(10deg); }
+
+}
+
+@-moz-keyframes rotation {
+
+  0% { -moz-transform: rotate(0deg); }
+
+  50% { -moz-transform: rotate(-10deg); }
+
+  100% { -moz-transform: rotate(10deg); }
+
+}
+
+@-o-keyframes rotation {
+
+  0% { -o-transform: rotate(0deg); }
+
+  50% { -o-transform: rotate(-10deg); }
+
+  100% { -o-transform: rotate(10deg); }
+
+}
+
+@-ms-keyframes rotation {
+
+  0% { -ms-transform: rotate(0deg); }
+
+  50% { -ms-transform: rotate(-10deg); }
+
+  100% { -ms-transform: rotate(10deg); }
+
 }
 
 
