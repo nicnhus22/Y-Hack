@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define DYN_THRESH
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,7 @@ namespace TestMathematica
             //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\all.wav";
 
             var data = GetDataFromWav(ml, path);
+            data = MovingAverageSmooth(data);
             var rate = GetSamplingRateFromWav(ml, path);
             List<double[]> MajorFrequencies = new List<double[]> ();
             for (var ii = 0; ii < data.Length + SAMPLE_COUNT; ii += SAMPLE_COUNT)
@@ -51,7 +53,7 @@ namespace TestMathematica
                     break;
                 }
                 var fft_data = GetMagnitudeOfComplexArray( GetFourierTransform(ml, temp_data) );
-                fft_data = LowPass(fft_data);
+                fft_data = MovingAverageSmooth(fft_data);
                 MajorFrequencies.Add(GetMajorFrequenciesFromTransform( fft_data , rate ));
 #if DEBUG
              //  File.WriteAllText(string.Format("test{0}.txt",ii),string.Join("\n",fft_data));
@@ -158,12 +160,12 @@ namespace TestMathematica
             return -1;
         }
 
-        private static double[] LowPass(double[] fft_data)
+        private static double[] MovingAverageSmooth(double[] Data)
         {
-            var res = new double[fft_data.Length];
+            var res = new double[Data.Length];
             for (var ii = 1; ii < res.Length - 1; ++ii)
             {
-                res[ii] = fft_data[ii] * 0.8 + fft_data[ii - 1] * 0.1 + fft_data[ii - 1] * 0.1;  
+                res[ii] = Data[ii] * 0.8 + Data[ii - 1] * 0.1 + Data[ii + 1] * 0.1; 
             }
             return res;
         }
@@ -309,10 +311,24 @@ namespace TestMathematica
         {
             List<double> freqs = new List<double>();
 
+#if DYN_THRESH
+            var THRESHOLD = 0.0;
+            for (var ii = 0; ii < fft_data.Length/2; ++ii)
+            {
+                if (fft_data[ii] > THRESHOLD)
+                {
+                    THRESHOLD = fft_data[ii];
+                }
+            }
+            THRESHOLD = THRESHOLD * 0.7;//70% of the max
+            if (THRESHOLD < LOWER_THRESHOLD)
+                THRESHOLD = LOWER_THRESHOLD;
+#endif
+
             //Magic formula : Freq = Abs(2*index/length - 1 )
             for (var ii = 0; ii < fft_data.Length/2; ++ii)
             {
-                if (fft_data[ii] > LOWER_THRESHOLD)
+                if (fft_data[ii] > THRESHOLD)
                 {
                     Console.Write(fft_data[ii]+",");
                     freqs.Add((double)rate  * (double)ii / ((double)fft_data.Length/2.0));
