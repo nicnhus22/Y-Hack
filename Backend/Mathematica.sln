@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMathematica", "TestMathematica.csproj", "{FF87F429-B139-43E7-8D48-F6042BE811B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BauxBackendService", "..\BauxBackendService\BauxBackendService.csproj", "{7E416450-7E77-4894-9C9A-74D558DDB994}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Debug|x86.Build.0 = Debug|x86
 		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Release|x86.ActiveCfg = Release|x86
 		{FF87F429-B139-43E7-8D48-F6042BE811B3}.Release|x86.Build.0 = Release|x86
+		{7E416450-7E77-4894-9C9A-74D558DDB994}.Debug|x86.ActiveCfg = Debug|x86
+		{7E416450-7E77-4894-9C9A-74D558DDB994}.Debug|x86.Build.0 = Debug|x86
+		{7E416450-7E77-4894-9C9A-74D558DDB994}.Release|x86.ActiveCfg = Release|x86
+		{7E416450-7E77-4894-9C9A-74D558DDB994}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

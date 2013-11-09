@@ -1,0 +1,4 @@
+C:\Users\Joshua\Documents\GitHub\Y-Hack\BauxBackendService\bin\Debug\BauxBackendService.exe
+C:\Users\Joshua\Documents\GitHub\Y-Hack\BauxBackendService\bin\Debug\BauxBackendService.pdb
+C:\Users\Joshua\Documents\GitHub\Y-Hack\BauxBackendService\obj\x86\Debug\BauxBackendService.exe
+C:\Users\Joshua\Documents\GitHub\Y-Hack\BauxBackendService\obj\x86\Debug\BauxBackendService.pdb
