@@ -75,7 +75,7 @@ namespace UnitTests
             string actual = string.Empty;
             foreach (double d in arr)
             {
-                actual = Program.FrequencyToNote(d).ToString();
+                //actual = Program.FrequencyToNote(d).ToString();
             }
             
             Assert.AreEqual(expected, actual);

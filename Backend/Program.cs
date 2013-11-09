@@ -14,13 +14,28 @@ namespace TestMathematica
         public static void Main(string[] args)
         {
             if(args.Length >= 3)
-            SoundToMusicAnalysis.NotesFromFile(args);
+                SoundToMusicAnalysis.NotesFromFile(args);
             else
                 SoundToMusicAnalysis.NotesFromFile(new string []{"","",""});
         }
     }
-    
-    
+
+    public class Note
+    {
+        public string _step;
+        public int _octave;
+        public int _start;
+        public int _end;
+
+        public Note(string step, int octave, int start, int end)
+        { _step = step; _octave = octave; _start = start; _end = end; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}{1}", _step, _octave);
+        }
+    }
+
     class SoundToMusicAnalysis
     {
         static int SAMPLE_COUNT = 500;// chunks of 500 / rate (ms) 
@@ -59,9 +74,6 @@ namespace TestMathematica
             ml.WaitAndDiscardAnswer();
             // Discard the initial InputNamePacket the kernel will send when launched.
 
-
-
-
             var data = GetDataFromWav(ml, path);
             data = MovingAverageSmooth(data);
             var rate = GetSamplingRateFromWav(ml, path);
@@ -92,23 +104,8 @@ namespace TestMathematica
             WriteResults(MajorFrequencies);
             var a = MakeMusicSheet(MajorNotes);
             Console.WriteLine("All done");
+            MusicSheetGenerator.generateMusicSheet(a);            
             return a; // 'a' is the most descriptive variable name.... EVER
-        }
-
-        public class Note 
-        {
-            public string _step;
-            public int _octave;
-            public int _start;
-            public int _end;
-
-            public Note(string step, int octave, int start, int end)  
-            {_step = step; _octave = octave; _start = start ; _end = end;}
-
-            public override string ToString()
-            {
-                return string.Format("{0}{1}",_step,_octave);
-            }
         }
 
         public static List<Note> MakeMusicSheet(List<Note[]>  majorNotes)

@@ -6,3 +6,11 @@ C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\_REPO\Y-Hack\Backend\UnitTe
 C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\_REPO\Y-Hack\Backend\UnitTests\bin\Debug\TestMathematica.pdb
 C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\_REPO\Y-Hack\Backend\UnitTests\obj\Debug\UnitTests.dll
 C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\_REPO\Y-Hack\Backend\UnitTests\obj\Debug\UnitTests.pdb
+C:\Users\Joshua\Documents\GitHub\Y-Hack\Backend\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Documents\GitHub\Y-Hack\Backend\UnitTests\bin\Debug\UnitTests.dll
+C:\Users\Joshua\Documents\GitHub\Y-Hack\Backend\UnitTests\bin\Debug\UnitTests.pdb
+C:\Users\Joshua\Documents\GitHub\Y-Hack\Backend\UnitTests\bin\Debug\TestMathematica.exe
+C:\Users\Joshua\Documents\GitHub\Y-Hack\Backend\UnitTests\bin\Debug\Wolfram.NETLink.dll
+C:\Users\Joshua\Documents\GitHub\Y-Hack\Backend\UnitTests\bin\Debug\TestMathematica.pdb
+C:\Users\Joshua\Documents\GitHub\Y-Hack\Backend\UnitTests\obj\Debug\UnitTests.dll
+C:\Users\Joshua\Documents\GitHub\Y-Hack\Backend\UnitTests\obj\Debug\UnitTests.pdb
