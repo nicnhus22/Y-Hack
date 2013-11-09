@@ -11,16 +11,47 @@ namespace TestMathematica
 {
     class Program
     {
+        public static void Main(string[] args)
+        {
+            if(args.Length >= 3)
+            SoundToMusicAnalysis.NotesFromFile(args);
+            else
+                SoundToMusicAnalysis.NotesFromFile(new string []{"","",""});
+        }
+    }
+    
+    
+    class SoundToMusicAnalysis
+    {
         static int SAMPLE_COUNT = 500;// chunks of 500 / rate (ms) 
         static double LOWER_THRESHOLD = 1;//For tuning = 5;
         static int UPPER_THRESHOLD = 100;
-        static void Main(string[] args)
+        public static List<Note> NotesFromFile(string[] args)
         {
-            double[] arr = { 0, 10, 100, 1000, 10000, 400, 440, 32.703 };
-            foreach (double d in arr)
+            if (args.Length < 3)
+                throw new ArgumentException("You need three arguments dawg ");
+
+            var path = string.Empty;
+            if (args[0].Length != 0)
             {
-                string actual = FrequencyToNote(d).ToString();
+                path = args[0];
+                SAMPLE_COUNT = int.Parse(args[1]);
+                LOWER_THRESHOLD = double.Parse(args[2]);
             }
+            else
+            {
+                path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\lotr.wav";
+                //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\fureliseshort.wav";
+                //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\furelise2.wav";
+                //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\furs.wav"; //toats shit
+                //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\all.wav";
+            }
+            
+            //double[] arr = { 0, 10, 100, 1000, 10000, 400, 440, 32.703 };
+            //foreach (double d in arr)
+            //{
+            //    string actual = FrequencyToNote(d).ToString();
+            //}
             // This launches the Mathematica kernel:
             IKernelLink ml = MathLinkFactory.CreateKernelLink();
             var myComplexType = new Complex(1,2);
@@ -29,11 +60,7 @@ namespace TestMathematica
             // Discard the initial InputNamePacket the kernel will send when launched.
 
 
-            var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\lotr.wav";
-            //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\fureliseshort.wav";
-            //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\furelise2.wav";
-            //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\furs.wav"; //toats shit
-            //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\all.wav";
+
 
             var data = GetDataFromWav(ml, path);
             data = MovingAverageSmooth(data);
@@ -65,7 +92,7 @@ namespace TestMathematica
             WriteResults(MajorFrequencies);
             var a = MakeMusicSheet(MajorNotes);
             Console.WriteLine("All done");
-            Console.ReadKey();
+            return a; // 'a' is the most descriptive variable name.... EVER
         }
 
         public class Note 
