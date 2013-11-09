@@ -10,15 +10,15 @@ namespace TestMathematica
 {
     class Program
     {
-        static int SAMPLE_COUNT = 500;
-        static double LOWER_THRESHOLD = 0.8;
+        static int SAMPLE_COUNT = 500;// chunks of 500 / rate (ms) 
+        static double LOWER_THRESHOLD = 1;//For tuning = 5;
         static int UPPER_THRESHOLD = 100;
         static void Main(string[] args)
         {
             double[] arr = { 0, 10, 100, 1000, 10000, 400, 440, 32.703 };
             foreach (double d in arr)
             {
-                string actual = FrequencyToNote(d);
+                string actual = FrequencyToNote(d).ToString();
             }
             // This launches the Mathematica kernel:
             IKernelLink ml = MathLinkFactory.CreateKernelLink();
@@ -28,8 +28,11 @@ namespace TestMathematica
             // Discard the initial InputNamePacket the kernel will send when launched.
 
 
-            //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\lotr.wav";
-            var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\fureliseshort.wav";
+            var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\lotr.wav";
+            //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\fureliseshort.wav";
+            //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\furelise2.wav";
+            //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\furs.wav"; //toats shit
+            //var path = @"C:\Users\zhadowoflight\Desktop\Studies\COEN_9\y-hack\all.wav";
 
             var data = GetDataFromWav(ml, path);
             var rate = GetSamplingRateFromWav(ml, path);
@@ -48,26 +51,130 @@ namespace TestMathematica
                     break;
                 }
                 var fft_data = GetMagnitudeOfComplexArray( GetFourierTransform(ml, temp_data) );
+                fft_data = LowPass(fft_data);
                 MajorFrequencies.Add(GetMajorFrequenciesFromTransform( fft_data , rate ));
 #if DEBUG
-        //        File.WriteAllText(string.Format("test{0}.txt",ii),string.Join("\n",fft_data));
+             //  File.WriteAllText(string.Format("test{0}.txt",ii),string.Join("\n",fft_data));
 #endif
             }
 
-            List<string[]> MajorNotes = GetMajorNotesFromFrequencies(MajorFrequencies);
+            List<Note[]> MajorNotes = GetMajorNotesFromFrequencies(MajorFrequencies);
             WriteResults(MajorNotes);
             WriteResults(MajorFrequencies);
+            var a = MakeMusicSheet(MajorNotes);
             Console.WriteLine("All done");
             Console.ReadKey();
         }
 
-        private static List<string[]> GetMajorNotesFromFrequencies(List<double[]> MajorFrequencies)
+        public class Note 
         {
-            var res = new List<string[]>();
+            public string _step;
+            public int _octave;
+            public int _start;
+            public int _end;
+
+            public Note(string step, int octave, int start, int end)  
+            {_step = step; _octave = octave; _start = start ; _end = end;}
+
+            public override string ToString()
+            {
+                return string.Format("{0}{1}",_step,_octave);
+            }
+        }
+
+        public static List<Note> MakeMusicSheet(List<Note[]>  majorNotes)
+        {
+            var res = new List<Note>();
+            //skip early silence
+            var sil = 0;
+            for (; sil < majorNotes.Count; ++sil)
+            {
+                if (majorNotes[sil].Length > 0)
+                    break;
+            }
+
+            var count = 1;
+            List<Note> now = new List<Note>();
+            for (var ii = sil; ii < majorNotes.Count; ++ii)
+            {
+                var instant = majorNotes[ii];
+                for (var ll = 0; ll < instant.Length; ++ll)
+                {
+
+                    for (var kk = 0; kk < instant.Length; ++kk)
+                    {
+                        if (!HasTheNote(now, majorNotes[ii][kk]))
+                        {
+                            instant[kk]._start = count;
+                            now.Add(instant[kk]);
+                        }
+                    }
+
+                }
+
+                for (var kk = 0; kk < now.Count; ++kk)
+                {
+                    if (!HasTheNote(instant, now[kk]))
+                    {
+                        now[kk]._end = count;
+                        res.Add(now[kk]);
+                        now.RemoveAt(kk);
+                        --kk;
+                    }
+                }
+                count++;
+            }
+
+            return res;
+        }
+
+        private static bool HasTheNote(Note[] instant, Note note)
+        {
+            foreach (var n in instant)
+            {
+                if (n._octave == note._octave && n._step == note._step)
+                    return true;
+            }
+            return false;
+        }
+
+        static public bool HasTheNote(List<Note> list, Note c )
+        {
+            foreach(var n  in list)
+            {
+                if(n._octave == c._octave && n._step == c._step)
+                    return true;
+            }
+            return false;
+        }
+
+        static public int WhereIsTheNote(List<Note> list, Note c)
+        {
+            for (var ii = 0; ii < list.Count; ++ii)
+            {
+                if (list[ii]._octave == c._octave && list[ii]._step == c._step)
+                    return ii;
+            }
+            return -1;
+        }
+
+        private static double[] LowPass(double[] fft_data)
+        {
+            var res = new double[fft_data.Length];
+            for (var ii = 1; ii < res.Length - 1; ++ii)
+            {
+                res[ii] = fft_data[ii] * 0.8 + fft_data[ii - 1] * 0.1 + fft_data[ii - 1] * 0.1;  
+            }
+            return res;
+        }
+
+        private static List<Note[]> GetMajorNotesFromFrequencies(List<double[]> MajorFrequencies)
+        {
+            var res = new List<Note[]>();
             foreach (var freqs in MajorFrequencies)
             { 
-                var notes =new List<string> ();
-                for (var ii = 0; ii < freqs.Length/2; ++ii )
+                var notes =new List<Note> ();
+                for (var ii = 0; ii < freqs.Length; ++ii )
                 {
                     notes.Add(FrequencyToNote(freqs[ii]));
                 }
@@ -83,7 +190,7 @@ namespace TestMathematica
                 8372.018,   16744.036 
             };
         static double MagicMusicNumber = Math.Pow(2, (double)1 / (double)12);
-        public static string FrequencyToNote(double freq)
+        public static Note FrequencyToNote(double freq)
         {
 
 
@@ -94,7 +201,7 @@ namespace TestMathematica
             var CeeFam = ind - 1;// and one to account for the fact that the first index is actually C-1
 
             if (freq <= MagicMusicNumber)
-                return "L0"; //Too low to consider
+                return new Note("L0",0,0,0); //Too low to consider
 
             var approx = (ind == -1 ? MagicMusicNumber : cees[ind]);
             var next = 0.0;
@@ -129,7 +236,7 @@ namespace TestMathematica
             // Console.WriteLine(string.Format("The freq {0} is approx {1} < %{0}% < {2}. Me thinks this is {3}{4}", freq, approx, next, letter, CeeFam));
             //var ret = string.Format("Family of {0} freq. The C{1} family", ind == -1 ? 0 : cees[ind], ind-1);
 
-            return string.Format("{0}{1}",letter, CeeFam);
+            return new Note(letter,CeeFam,0,0);
         }
 
         static string NoteLetterGetter ( int letterModifier )
@@ -168,12 +275,12 @@ namespace TestMathematica
             }
         }
 
-        static void WriteResults(List<string []> values)
+        static void WriteResults(List<Note []> values)
         {
             StringBuilder buildIt = new StringBuilder();
-            foreach (string[] arr in values)
+            foreach (Note[] arr in values)
             {
-                foreach (string d in arr)
+                foreach (Note d in arr)
                 { 
                     buildIt.Append(string.Format("{0},",d));
                 }
@@ -203,12 +310,13 @@ namespace TestMathematica
             List<double> freqs = new List<double>();
 
             //Magic formula : Freq = Abs(2*index/length - 1 )
-            for (var ii = 0; ii < fft_data.Length; ++ii)
+            for (var ii = 0; ii < fft_data.Length/2; ++ii)
             {
                 if (fft_data[ii] > LOWER_THRESHOLD)
                 {
                     Console.Write(fft_data[ii]+",");
-                    freqs.Add(rate* Math.Abs(2 * (double)ii / (double)fft_data.Length - 1));
+                    freqs.Add((double)rate  * (double)ii / ((double)fft_data.Length/2.0));
+                    // freqs.Add(rate* Math.Abs(2 * (double)ii / (double)fft_data.Length - 1));
                 }
                 
             }
@@ -222,9 +330,10 @@ namespace TestMathematica
         public static double[] GetDataFromWav(IKernelLink ml, string path)
         {
             object obj = null;
-            var wavCommandFormat = string.Format(@"Data = Import[""{0}"" , ""Data""]", path);
+            var wavCommandFormat = string.Format(@"Data2 = Import[""{0}"" , ""Data""]", path.Replace("\\","\\\\") );
             ml.Evaluate(wavCommandFormat);
-            ml.WaitForAnswer();
+            PacketType p = ml.WaitForAnswer();
+            object tempo = checkPacketType(p);
             try
             {
                 obj = ml.GetObject();
@@ -244,10 +353,15 @@ namespace TestMathematica
             return res;
         }
 
+        private static object checkPacketType(PacketType p)
+        {
+            return p.ToString();
+        }
+
         public static int GetSamplingRateFromWav(IKernelLink ml, string path)
         {
             object obj = null;
-            var wavCommandFormat = string.Format(@"Import[""{0}"" , ""SampleRate"" ]", path);
+            var wavCommandFormat = string.Format(@"Import[""{0}"" , ""SampleRate"" ]", path.Replace("\\","\\\\") );
             ml.Evaluate(wavCommandFormat);
             ml.WaitForAnswer();
             try
