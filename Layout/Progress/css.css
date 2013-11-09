@@ -28,7 +28,7 @@
 
 .pace .pace-progress {
 
-  background: #02adea;
+  background: #c3000d;
 
   position: fixed;
 
@@ -66,7 +66,7 @@
 
   height: 100%;
 
-  box-shadow: 0 0 10px #02adea, 0 0 5px #02adea;
+  box-shadow: 0 0 10px #02adea, 0 0 5px #c3000d;
 
   opacity: 1.0;
 
@@ -102,9 +102,9 @@
 
   border: solid 2px transparent;
 
-  border-top-color: #02adea;
+  border-top-color: #c3000d;
 
-  border-left-color: #02adea;
+  border-left-color: #c3000d;
 
   border-radius: 10px;
 
@@ -188,9 +188,9 @@
 
   width:0%;
 
-  height:2px; 
+  height:4px; 
 
-  background: #02adea;
+  background: #c3000d;
 
   animation: bar_progress 2s linear infinite;
 

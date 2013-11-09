@@ -1,0 +1,34 @@
+#open_file_btn {
+	display: none !important;
+}
+
+#go_url_input{
+	display: none !important;
+}
+
+#go_url_btn{
+	display: none !important;
+}
+
+#page_1st_btn{
+	display: none !important;
+}
+
+#page_nth_btn{
+	display: none !important;
+}
+
+#standalone_btn{
+	display: none !important;
+}
+
+#page_prev_btn {
+
+}
+
+#page_next_btn {
+	margin-right: 85px;
+}
+
+
+
