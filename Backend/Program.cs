@@ -15,6 +15,8 @@ namespace TestMathematica
         static int UPPER_THRESHOLD = 100;
         static void Main(string[] args)
         {
+          //  Console.WriteLine(args[0]);
+            //return;
             double[] arr = { 0, 10, 100, 1000, 10000, 400, 440, 32.703 };
             foreach (double d in arr)
             {

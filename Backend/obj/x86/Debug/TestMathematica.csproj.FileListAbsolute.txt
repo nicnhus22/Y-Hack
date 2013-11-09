@@ -1,0 +1,6 @@
+C:\Users\Sydney\Documents\GitHub\Y-Hack\Backend\bin\Debug\TestMathematica.exe
+C:\Users\Sydney\Documents\GitHub\Y-Hack\Backend\bin\Debug\TestMathematica.pdb
+C:\Users\Sydney\Documents\GitHub\Y-Hack\Backend\bin\Debug\Wolfram.NETLink.dll
+C:\Users\Sydney\Documents\GitHub\Y-Hack\Backend\obj\x86\Debug\TestMathematica.csprojResolveAssemblyReference.cache
+C:\Users\Sydney\Documents\GitHub\Y-Hack\Backend\obj\x86\Debug\TestMathematica.exe
+C:\Users\Sydney\Documents\GitHub\Y-Hack\Backend\obj\x86\Debug\TestMathematica.pdb
