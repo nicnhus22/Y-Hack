@@ -8,3 +8,5 @@ I personally did all the layout, I created the 3D cube, managed the transitions 
 The other team members worked on the Mathematica API and on Matlab to generate an xml corresponding to the differents notes that are in the .wav file.
 
 This version uploads a file to the server, then authenticates the user to his Dropbox account, creates a folder Baux to store the wav file. However, the music sheet generated is just an example, we only had 20 hours to do that.
+
+URL: http://illogika.net/Layout . Sorry if the link is broken.
